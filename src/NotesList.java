@@ -1,17 +1,17 @@
 import java.util.TreeMap;
 import java.util.Map;
 
-public class Tuning {
-    Double a4Frequency = 432.0;
+public class NotesList {
+    Double a4Frequency = 440.0;
     Double C0Frequency = a4Frequency / (Math.pow(2, 4) * Math.pow((Math.pow(2, (double)1/12)), 9));
     Map<Double, String> sounds = new TreeMap<>();
     String[] noteNames = new String[]{"C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"};
 
-    Tuning(){
+    NotesList(){
         this.countNotes();
     }
 
-    Tuning(double freq){
+    NotesList(double freq){
         a4Frequency = freq;
         countNotes();
     }

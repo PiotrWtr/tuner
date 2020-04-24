@@ -3,6 +3,7 @@ import java.io.IOException;
 import java.net.URL;
 
 public class AudioHandler {
+
     public static Mixer mixer;
     public static Clip clip;
     public static AudioInputStream audioStream;
@@ -33,8 +34,7 @@ public class AudioHandler {
         } catch (LineUnavailableException e) {
             e.printStackTrace();
         }
-    }
-    public void play(){
+    }public void play(){
         clip.setFramePosition(0);
         clip.start();
     }
