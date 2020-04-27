@@ -6,20 +6,21 @@ public class Main {
         //Gui gui = new Gui();
         //gui.startGui();
 
-        //NotesList notesList = new NotesList();
+        NotesList notesList = new NotesList();
         //notesList.printNotes();
 
         double testFrequency = 82.6;
-        SineSignal testSignal = new SineSignal(testFrequency);
-        //testSignal.printSignal();
-        //System.out.println(testSignal.signal.length);
-        System.out.println("Test freq: " + testFrequency);
+        Signal testSignal = new SineSignal(testFrequency);
+        testSignal.printSignal();
+        System.out.println(testSignal.signal.length);
+        //System.out.println("Test freq: " + testFrequency);
 
-        FrequencyAnalyser lowFreqAalyser = new LowFrequencyAnalyser();
-        FrequencyAnalyser highFreqAalyser = new HighFrequencyAnalyser();
-        System.out.println("Freq from low freq analyser :" + lowFreqAalyser.analyse(testSignal, testSignal.samplingRate));
-        System.out.println("Freq from high freq analyser :" + highFreqAalyser.analyse(testSignal, testSignal.samplingRate));
-        System.out.println(" ");
+        //FrequencyAnalyser freqAnalyser = new LowFrequencyAnalyser();
+
+        //System.out.println("Freq from low freq analyser :" + freqAnalyser.analyse(testSignal, testSignal.samplingRate));
+        //freqAnalyser = new HighFrequencyAnalyser();
+        //System.out.println("Freq from high freq analyser :" + freqAnalyser.analyse(testSignal, testSignal.samplingRate));
+
         /*
         PrintWriter zapis = null;
         try {

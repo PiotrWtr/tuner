@@ -7,11 +7,11 @@ public class NotesList {
     Map<Double, String> sounds = new TreeMap<>();
     String[] noteNames = new String[]{"C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"};
 
-    NotesList(){
+    public NotesList(){
         this.countNotes();
     }
 
-    NotesList(double freq){
+    public NotesList(double freq){
         a4Frequency = freq;
         countNotes();
     }

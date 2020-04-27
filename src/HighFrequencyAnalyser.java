@@ -1,7 +1,7 @@
 public class HighFrequencyAnalyser extends FrequencyAnalyser {
     double frequency = 0;
 
-    double analyse(SineSignal signal, double samplingRate){
+    double analyse(Signal signal, double samplingRate){
         int zeros = 0;
         for (int i = 0; i < signal.signal.length - 1; i++) {
             if (signal.signal[i] <= 0 && signal.signal[i + 1] > 0) {
