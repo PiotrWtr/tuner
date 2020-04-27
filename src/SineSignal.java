@@ -7,21 +7,24 @@ public class SineSignal extends  Signal{
     double[] signal;
 
     public SineSignal() {
+        System.out.println("konstruktor SineSignal");
         signal = new double[(int)(samplingRate * signalLength)];
         for (int i = 0; i < samplingRate * signalLength ; i++){
             signal[i] = sinAmplitude * Math.sin(2 * Math.PI * sinFrequency * ((double) i / 44100) + sinOffset);
         }
     }
     public SineSignal(double frequency) {
+        System.out.println("konstruktor SineSignal");
         sinFrequency = frequency;
         signal = new double[(int) (samplingRate * signalLength)];
         for (int i = 0; i < samplingRate * signalLength; i++) {
             signal[i] = sinAmplitude * Math.sin(2 * Math.PI * sinFrequency * ((double) i / 44100) + sinOffset);
         }
     }
-    public void printSignal(){
+
+    /*public void printSignal(){
         for (int i = 0 ; i < signal.length; i++){
             System.out.println(signal[i]);
         }
-}
+    }*/
 }

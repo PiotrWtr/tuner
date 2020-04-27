@@ -1,6 +1,7 @@
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 
+
 public class Main {
     public static void main(String[] args) {
         //Gui gui = new Gui();
@@ -11,8 +12,11 @@ public class Main {
 
         double testFrequency = 82.6;
         Signal testSignal = new SineSignal(testFrequency);
+
         testSignal.printSignal();
-        System.out.println(testSignal.signal.length);
+       // System.out.println(testSignal.signal.length);
+
+        //System.out.println(String.valueOf(testSignal.signal.length));
         //System.out.println("Test freq: " + testFrequency);
 
         //FrequencyAnalyser freqAnalyser = new LowFrequencyAnalyser();
