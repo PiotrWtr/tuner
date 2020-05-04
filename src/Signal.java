@@ -1,10 +1,14 @@
 public class Signal {
     double samplingRate;
-    double[] signal = {0};
+    double[] signal;
 
-    public Signal(){
-        System.out.println("konstruktor Signal");
-        //signal = new double[]{0};
+    public Signal(double samplingRate, double[] signal){
+        this.samplingRate = samplingRate;
+        this.signal = signal;
+    }
+
+    public double getSamplingRate(){
+        return samplingRate;
     }
 
     public void printSignal(){
@@ -12,8 +16,16 @@ public class Signal {
             System.out.println(signal[i]);
         }
     }
+}
+/*public class Signal {
+    double samplingRate;
+    double[] signal = {0};
 
-    public void printSignalLength(){
-        System.out.println(signal.length);
+    public Signal(double samplingRate, double[] signal){
+        System.out.println("konstruktor Signal");
+        //signal = new double[]{0};
+        this.samplingRate = samplingRate;
+        this.signal = signal;
     }
 }
+*/

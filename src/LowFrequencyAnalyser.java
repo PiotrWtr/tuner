@@ -1,6 +1,5 @@
 public class LowFrequencyAnalyser extends FrequencyAnalyser {
-
-    double frequency = 0;
+    private double frequency = 0;
 
     public double analyse(Signal signal, double samplingRate) {
         int firstZero = 0;
