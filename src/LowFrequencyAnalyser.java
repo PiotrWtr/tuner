@@ -1,18 +1,18 @@
 public class LowFrequencyAnalyser extends FrequencyAnalyser {
     private double frequency = 0;
 
-    public double analyse(Signal signal, double samplingRate) {
+    public double analyse(double[] signal, double samplingRate) {
         int firstZero = 0;
         int secondZero = 0;
 
-        for (int i = 0; i < signal.signal.length; i++) {
-            for (int j = 0; j < signal.signal.length - 1; j++) {
-                if (signal.signal[j] <= 0 && signal.signal[j + 1] > 0) {
+        for (int i = 0; i < signal.length; i++) {
+            for (int j = 0; j < signal.length - 1; j++) {
+                if (signal[j] <= 0 && signal[j + 1] > 0) {
                     firstZero = j;
                     //System.out.println("First zero " + firstZero);
                 }
 
-                if (signal.signal[j] >= 0 && signal.signal[j + 1] < 0) {
+                if (signal[j] >= 0 && signal[j + 1] < 0) {
                     secondZero = j;
                     //System.out.println("Second zero " + secondZero);
                 }

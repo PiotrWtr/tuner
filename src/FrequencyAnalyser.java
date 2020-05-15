@@ -1,5 +1,5 @@
 public class FrequencyAnalyser {
-    double analyse(Signal signal, double samplingRate){
+    double analyse(double[] signal, double samplingRate){
         return 0;
     }
 }

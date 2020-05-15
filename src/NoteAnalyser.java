@@ -7,13 +7,15 @@ public class NoteAnalyser {
     //Low frequency up to B2-50% = 120,01 Hz
     //High frequency from G2-50% = 95,25 HZ
     private NotesList notesList;
+    private FrequencyAnalyser freqAnalyser;
 
     public NoteAnalyser(){
         notesList = new NotesList();
+        freqAnalyser = new LowFrequencyAnalyser();
     }
 
-    private String getCents(double frequency, double nearestNoteFrequency){
-        String cents = "0";
+    private Double getCents(double frequency, double nearestNoteFrequency){
+        Double cents = 0.0;
         double freqAndNoteDifference = frequency - nearestNoteFrequency;
         //System.out.println();
         //System.out.println("Cent test:");
@@ -22,16 +24,15 @@ public class NoteAnalyser {
         //System.out.println("freqAndNoteDifference: " + freqAndNoteDifference);
         if (freqAndNoteDifference < 0){
             double toPreviousNoteDistance = nearestNoteFrequency - nearestNoteFrequency / (Math.pow(2, (double)1/12));
-            Double toRound = Math.round((Double)(freqAndNoteDifference / toPreviousNoteDistance * 100 * 10))/10.0;
+            cents = Math.round((Double)(freqAndNoteDifference / toPreviousNoteDistance * 100 * 10))/10.0;
             //cents = "-" + ((Double)(freqAndNoteDifference / toPreviousNoteDistance * 100 * 10)).toString();
-            cents = toRound.toString();
+
             //System.out.println("<0 toPreviousNoteDistance " + toPreviousNoteDistance );
         }
         if (freqAndNoteDifference > 0){
             double toNextNoteDistance = nearestNoteFrequency * (Math.pow(2, (double)1/12)) - nearestNoteFrequency;
-            Double toRound = Math.round((Double)(freqAndNoteDifference / toNextNoteDistance * 100 * 10))/10.0;
+            cents = Math.round((Double)(freqAndNoteDifference / toNextNoteDistance * 100 * 10))/10.0;
             //cents = "+" + ((Double)(freqAndNoteDifference / toNextNoteDistance * 100)).toString();
-            cents = "+" + toRound.toString();
             //System.out.println(">0 toNextNoteDistance " + toNextNoteDistance );
         }
         return cents;
@@ -39,8 +40,15 @@ public class NoteAnalyser {
 
     String getNote(Signal signal){
         String note = "X";
-        FrequencyAnalyser freqAnalyser = new LowFrequencyAnalyser();
-        double frequency = freqAnalyser.analyse(signal, signal.samplingRate);
+        double frequency = freqAnalyser.analyse(signal.signal, signal.samplingRate);
+        if (frequency >= 120.01 && freqAnalyser.getClass().equals("LowFrequencyAnalyser")){
+            freqAnalyser = new HighFrequencyAnalyser();
+            frequency = freqAnalyser.analyse(signal.signal, signal.samplingRate);
+        }
+        if (frequency <= 95.25 && freqAnalyser.getClass().equals("HighFrequencyAnalyser")){
+            freqAnalyser = new HighFrequencyAnalyser();
+            frequency = freqAnalyser.analyse(signal.signal, signal.samplingRate);
+        }
         double nearestNoteFrequency = 0;
         double ratio = 1;
         Iterator<Map.Entry<Double, String>> entries = notesList.sounds.entrySet().iterator();
@@ -53,7 +61,13 @@ public class NoteAnalyser {
                 note = entry.getValue();
             }
             if ( innerRatio > ratio ){
-                note += " " + getCents(frequency, nearestNoteFrequency);
+                double cents = getCents(frequency, nearestNoteFrequency);
+                if (cents <0) {
+                    note += " " + getCents(frequency, nearestNoteFrequency);
+                }
+                else{
+                    note += " +" + getCents(frequency, nearestNoteFrequency);
+                }
                 break;
             }
             ratio = innerRatio;

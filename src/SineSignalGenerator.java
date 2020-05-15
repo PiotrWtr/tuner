@@ -1,7 +1,7 @@
 public class SineSignalGenerator {
     private double sinFrequency = 164.81; //of signal i [Hz]
     private double samplingRate = 44100;  //[Hz]
-    private double signalLength = 0.05; //of signal in [s]
+    private double signalLength = 1; //of signal in [s]
     private double sinOffset = 0;
     private double sinAmplitude = 1;
     private double[] signal;

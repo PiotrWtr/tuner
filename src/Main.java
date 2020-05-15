@@ -20,7 +20,8 @@ public class Main {
         //System.out.println("Test sampling rate: " + testSignal.getSamplingRate());
 
         NoteAnalyser noteAnalyser = new NoteAnalyser();
-        System.out.println(noteAnalyser.getNote(testSignal));
+        //System.out.println(noteAnalyser.getNote(testSignal));
+
         //noteAnalyser.notesList.printNotes();
 
         /*
